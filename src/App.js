@@ -1,24 +1,28 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { useEffect, useState } from 'react';
 import './App.css';
+import Header from './components/Header';
+import ShowData from './features/ShowData';
+import Vaccinated from './features/Vaccinated'
+import Age from './features/Age'
 
 function App() {
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    fetch('http://127.0.0.1:1880/User')
+      .then(res => res.json())
+      .then(content => setData(content))
+
+  }, [])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <ShowData data={data} />
+      <Vaccinated data={data} />
+      <Age data={data}/>
+    </>
   );
 }
 
