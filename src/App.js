@@ -21,7 +21,7 @@ function App() {
       <Header />
       <ShowData data={data} />
       <Vaccinated data={data} />
-      <Age data={data}/>
+      <Age data={data} />
     </>
   );
 }
